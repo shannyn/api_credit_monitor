@@ -2,6 +2,8 @@
 
 [English](#english) | [简体中文](#简体中文)
 
+![API Credit Monitor Screenshot](public/homepage.png)
+
 ---
 
 <a name="简体中文"></a>
