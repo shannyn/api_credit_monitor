@@ -96,50 +96,6 @@ const PROVIDERS: Record<string, Provider> = {
       currency: 'CNY'
     })
   },
-  qwen: {
-    id: 'qwen',
-    name: 'Aliyun (DashScope/Qwen)',
-    baseUrl: 'https://dashscope.aliyuncs.com/api/v1/user/usage',
-    docsUrl: 'https://dashscope.console.aliyun.com/billing',
-    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
-    transform: (data) => ({
-      balance: data.balance || 0,
-      currency: 'CNY'
-    })
-  },
-  stripe: {
-    id: 'stripe',
-    name: 'Stripe',
-    baseUrl: 'https://api.stripe.com/v1/balance',
-    docsUrl: 'https://dashboard.stripe.com/balance',
-    headers: (key) => ({ 'Authorization': `Basic ${btoa(key + ':')}` }),
-    transform: (data) => ({
-      balance: (data.available[0]?.amount || 0) / 100,
-      currency: (data.available[0]?.currency || 'usd').toUpperCase()
-    })
-  },
-  digitalocean: {
-    id: 'digitalocean',
-    name: 'DigitalOcean',
-    baseUrl: 'https://api.digitalocean.com/v2/customers/my/balance',
-    docsUrl: 'https://cloud.digitalocean.com/account/billing',
-    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
-    transform: (data) => ({
-      balance: Math.abs(parseFloat(data.month_to_date_balance || '0')),
-      currency: 'USD (Usage)'
-    })
-  },
-  resend: {
-    id: 'resend',
-    name: 'Resend (Email)',
-    baseUrl: 'https://api.resend.com/emails',
-    docsUrl: 'https://resend.com/settings/billing',
-    headers: (key) => ({ 'Authorization': `Bearer ${key}` }),
-    transform: (data) => ({
-      balance: data.data?.length || 0,
-      currency: 'Recent Emails'
-    })
-  },
   custom: {
     id: 'custom',
     name: 'Custom Provider',
